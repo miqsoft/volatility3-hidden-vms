@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="330" viewBox="0 0 900 330" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="title desc">
+  <title id="title">A Volatility 3 symbol file built from the memory image itself</title>
+  <desc id="desc">linux.btf_isf.Build finds the kernel's BTF and kallsyms in a memory image with no symbol to start from, checks that both belong to the same kernel, works out the KASLR shift and writes a complete ISF. Run does this for each guest automatically.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#444"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="330" fill="#ffffff"/>
+
+  <!-- image -->
+  <rect x="20" y="30" width="190" height="170" rx="8" fill="#f4f6f8" stroke="#555" stroke-width="1.5"/>
+  <text x="34" y="54" font-size="14" font-weight="bold" fill="#222">Memory image</text>
+  <text x="34" y="72" font-size="12" fill="#555">host, guest or --dump file</text>
+  <rect x="34" y="84" width="162" height="30" rx="4" fill="#e8f0fe" stroke="#3367d6"/>
+  <text x="44" y="104" font-size="12" fill="#1a3d8f">BTF: every kernel type</text>
+  <rect x="34" y="122" width="162" height="30" rx="4" fill="#e6f4ea" stroke="#188038"/>
+  <text x="44" y="142" font-size="12" fill="#0d5223">kallsyms: every symbol</text>
+  <rect x="34" y="160" width="162" height="30" rx="4" fill="#ffffff" stroke="#999"/>
+  <text x="44" y="180" font-size="12" fill="#333">linux_banner</text>
+
+  <!-- step 1 -->
+  <rect x="250" y="30" width="190" height="170" rx="8" fill="#ffffff" stroke="#555" stroke-width="1.5"/>
+  <text x="264" y="54" font-size="14" font-weight="bold" fill="#222">1. Find</text>
+  <text x="264" y="80" font-size="12" fill="#333">BTF by its header;</text>
+  <text x="264" y="99" font-size="12" fill="#333">kallsyms by the shape of</text>
+  <text x="264" y="118" font-size="12" fill="#333">its tables (tokens, markers,</text>
+  <text x="264" y="137" font-size="12" fill="#333">names, offsets), each</text>
+  <text x="264" y="156" font-size="12" fill="#333">checked against the others.</text>
+  <text x="264" y="182" font-size="12" font-weight="bold" fill="#333">No symbol to start from.</text>
+
+  <!-- step 2 -->
+  <rect x="480" y="30" width="190" height="170" rx="8" fill="#ffffff" stroke="#555" stroke-width="1.5"/>
+  <text x="494" y="54" font-size="14" font-weight="bold" fill="#222">2. Match and shift</text>
+  <text x="494" y="80" font-size="12" fill="#333">BTF, kallsyms and banner</text>
+  <text x="494" y="99" font-size="12" fill="#333">must come from one kernel:</text>
+  <text x="494" y="118" font-size="12" fill="#333">a host image also holds</text>
+  <text x="494" y="137" font-size="12" fill="#333">its guests' kernels.</text>
+  <text x="494" y="163" font-size="12" fill="#333">KASLR shift from the</text>
+  <text x="494" y="182" font-size="12" fill="#333">kernel's own symbols.</text>
+
+  <!-- step 3 -->
+  <rect x="710" y="30" width="170" height="170" rx="8" fill="#fef7e0" stroke="#b06000" stroke-width="1.5"/>
+  <text x="724" y="54" font-size="14" font-weight="bold" fill="#7a4100">3. Write the ISF</text>
+  <text x="724" y="80" font-size="12" fill="#333">every named type,</text>
+  <text x="724" y="99" font-size="12" fill="#333">every symbol, the</text>
+  <text x="724" y="118" font-size="12" fill="#333">exact banner</text>
+  <text x="724" y="144" font-size="12" fill="#333">same or better output</text>
+  <text x="724" y="163" font-size="12" fill="#333">than dwarf2json/btf2json</text>
+  <text x="724" y="182" font-size="12" fill="#333">on 5 kernels, 5.10-6.18</text>
+
+  <line x1="210" y1="115" x2="248" y2="115" stroke="#444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="440" y1="115" x2="478" y2="115" stroke="#444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="670" y1="115" x2="708" y2="115" stroke="#444" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="795" y1="200" x2="795" y2="238" stroke="#444" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- result -->
+  <rect x="20" y="240" width="860" height="70" rx="8" fill="#ffffff" stroke="#555" stroke-width="1.5"/>
+  <text x="34" y="266" font-size="14" font-weight="bold" fill="#222">Any Volatility plugin runs on that kernel</text>
+  <text x="34" y="289" font-size="12" fill="#333">linux.btf_isf.Build writes the file for any Linux image with BTF and kallsyms; linux.qemu_guest.Run builds it for each guest on the fly,</text>
+  <text x="34" y="304" font-size="12" fill="#333">so a guest that nobody has symbols for is analysed like any other image.</text>
+</svg>
